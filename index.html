@@ -1,35 +1,113 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mini Wordle — GitHub Pages</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <main>
-    <h1>Mini Wordle</h1>
-    <p class="hint">Guess the 5-letter word in 6 tries.</p>
+:root{
+  --bg:#050505;
+  --panel:#0b0b0b;
+  --tile:#141414;
+  --text:#e6eef8;
+  --absent:#3a3a3c;
+  --present:#b59f3b;
+  --correct:#2f8a44;
+  --accent:#ff4d4f;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
 
-    <div id="grid" aria-label="Wordle grid"></div>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#070707 140%);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
 
-    <div id="keyboard" aria-label="On-screen keyboard"></div>
+main{
+  width:100%;
+  max-width:760px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-radius:12px;
+  padding:18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+}
 
-    <div id="message" role="status" aria-live="polite"></div>
+h1{margin:0 0 6px;font-size:1.4rem}
+.hint{margin:0 0 12px;color: #98a0b2}
 
-    <div class="controls">
-      <button id="newGame">New game</button>
-      <label>
-        <input type="checkbox" id="dailyToggle" />
-        Daily word (fixed for the day)
-      </label>
-    </div>
+#info{display:flex;gap:12px;align-items:center;margin-bottom:8px;color:#9aa3b3}
+#grid{ margin:8px 0 18px; display:flex; flex-direction:column; gap:8px; align-items:center; }
 
-    <footer>
-      <small>Built for demo — put this repo on GitHub and enable Pages.</small>
-    </footer>
-  </main>
+.row{
+  display:grid;
+  grid-auto-flow:column;
+  gap:8px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.tile{
+  min-width:40px;
+  height:48px;
+  background:var(--tile);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.0rem;
+  letter-spacing:0.06rem;
+  text-transform:uppercase;
+  user-select:none;
+  transition: transform 140ms ease, background-color 220ms ease;
+  border:2px solid rgba(255,255,255,0.03);
+  color:var(--text);
+  padding:0 6px;
+  white-space:nowrap;
+}
+
+.tile.correct { background:var(--correct); color:white; }
+.tile.present { background:var(--present); color:white; }
+.tile.absent  { background:var(--absent); color:white; }
+
+.keyboard-row{
+  display:flex;
+  gap:6px;
+  justify-content:center;
+  margin-bottom:8px;
+  flex-wrap:wrap;
+}
+
+.key{
+  padding:8px 10px;
+  border-radius:6px;
+  min-width:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  user-select:none;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.03);
+  text-transform:uppercase;
+  font-weight:700;
+  font-size:0.85rem;
+  color:var(--text);
+}
+
+.key.wide{min-width:68px}
+.key.absent{background:var(--absent); color:white;}
+.key.present{background:var(--present); color:white;}
+.key.correct{background:var(--correct); color:white;}
+
+#message{
+  min-height:28px;
+  margin-top:12px;
+  text-align:center;
+  font-weight:700;
+}
+
+.controls{display:flex;gap:12px;justify-content:center;margin-top:12px}
+button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+button:hover{opacity:0.95}
+footer{margin-top:12px;text-align:center;color:#97a2b7;font-size:12px}
+@media (max-width:520px){
+  .tile{min-width:34px;height:42px;font-size:0.95rem}
+}

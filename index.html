@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Wordle — GitHub Pages</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Mini Wordle</h1>
+    <p class="hint">Guess the 5-letter word in 6 tries.</p>
+
+    <div id="grid" aria-label="Wordle grid"></div>
+
+    <div id="keyboard" aria-label="On-screen keyboard"></div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+
+    <div class="controls">
+      <button id="newGame">New game</button>
+      <label>
+        <input type="checkbox" id="dailyToggle" />
+        Daily word (fixed for the day)
+      </label>
+    </div>
+
+    <footer>
+      <small>Built for demo — put this repo on GitHub and enable Pages.</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
